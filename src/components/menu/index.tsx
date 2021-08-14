@@ -1,10 +1,6 @@
 import React, {FunctionComponent, useState} from "react";
-import {Button, Menu} from "antd";
+import {Menu} from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-} from "@ant-design/icons";
 
 export type CustomMenuItem = {
     label: string;
@@ -42,10 +38,10 @@ export const CustomMenu: FunctionComponent<CustomMenuType> = (props) => {
 
     return (
         <div style={{width: 256}}>
-            <Button type="primary"
+            {/*<Button type="primary"
                     onClick={toggleCollapsed} style={{marginBottom: 16}}>
                 {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-            </Button>
+            </Button>*/}
             <Menu
                 mode="inline"
                 inlineCollapsed={collapsed}>

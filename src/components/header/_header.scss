@@ -1,0 +1,137 @@
+$header-background-color: #292c2f;
+
+.header-container {
+  background-color: $header-background-color;
+  box-shadow: 0 1px 1px #ccc;
+  height: 80px;
+  display: flex;
+  color: #ffffff;
+  box-sizing: border-box;
+  top: -100px;
+  transition: top 0.3s;
+  align-items: center;
+  -webkit-transition: top 0.3s;
+  width: 100%;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+    .header-logo {
+      padding: 0 1em;
+      div {
+        width: 220px;
+        transition: all ease-in-out 200ms;
+        display: flex;
+        justify-content: center;
+        font-size: 1.5rem;
+
+        &.collapsed {
+          width: 70px;
+        }
+      }
+    }
+
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    nav {
+      font: 16px Arial, Helvetica, sans-serif;
+      line-height: 40px;
+      float: right;
+
+      a {
+        display: inline-block;
+        padding: 0 5px;
+        text-decoration: none;
+        color: #ffffff;
+        opacity: 0.9;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &.selected {
+          color: #608bd2;
+          pointer-events: none;
+          opacity: 1;
+        }
+      }
+    }
+
+    .collapse-menu-container {
+      width: 100%;
+      align-items: center;
+      display: flex;
+
+      span {
+        font-size: 1.8em;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+
+    .header-user-information {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      align-items: center;
+
+      .user-info {
+        display: flex;
+        width: auto;
+        padding: 0 1em;
+      }
+    }
+
+    .header-menu {
+      width: 100%;
+    }
+  }
+}
+
+/*	The header placeholder. It is displayed when the header is fixed to the top of the
+	browser window, in order to prevent the content of the page from jumping up. */
+
+.header-fixed-placeholder {
+  height: 80px;
+  display: none;
+}
+
+@media all and (max-width: 600px) {
+
+  .header-fixed {
+    padding: 20px 0;
+    height: 75px;
+
+    .header-limiter h1 {
+      float: none;
+      margin: -8px 0 10px;
+      text-align: center;
+      font-size: 24px;
+      line-height: 1;
+
+      nav {
+        line-height: 1;
+        float: none;
+
+        a {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  body.fixed .header-fixed {
+    display: none;
+  }
+
+}
