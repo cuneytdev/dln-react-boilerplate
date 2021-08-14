@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent} from "react";
 import {Menu} from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 
@@ -12,15 +12,11 @@ export type CustomMenuItem = {
 
 type CustomMenuType = {
     menu?: CustomMenuItem[];
+    collapsed: boolean;
 }
 
 export const CustomMenu: FunctionComponent<CustomMenuType> = (props) => {
-    const {menu} = props;
-    const [collapsed, setCollapsed] = useState(false);
-
-    const toggleCollapsed = () => {
-        setCollapsed(!collapsed);
-    }
+    const {menu, collapsed} = props;
 
     const renderMenuItems = (menuItem: CustomMenuItem) => {
         if (menuItem.items) {
@@ -33,15 +29,11 @@ export const CustomMenu: FunctionComponent<CustomMenuType> = (props) => {
     }
 
     const renderMenuItem = (menuItem: CustomMenuItem) => {
-        return <Menu.Item key={menuItem.key}>{menuItem.label}</Menu.Item>
+        return <Menu.Item key={menuItem.key} icon={menuItem.icon}>{menuItem.label}</Menu.Item>
     }
 
     return (
-        <div style={{width: 256}}>
-            {/*<Button type="primary"
-                    onClick={toggleCollapsed} style={{marginBottom: 16}}>
-                {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-            </Button>*/}
+        <div style={{width: '100%'}}>
             <Menu
                 mode="inline"
                 inlineCollapsed={collapsed}>

@@ -7,16 +7,18 @@ type HeaderType = {
     userInfo?: any;
     showUserInfo?: boolean;
     showMenuItems?: boolean;
+    onCollapseButtonClicked?: any;
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
-    const {showMenuItems} = props;
+    const {showMenuItems, onCollapseButtonClicked} = props;
     const headerTitle = 'Company';
     const [collapsed, setCollapsed] = useState(false);
 
     const handleCollapseToggleButtonClicked = () => {
         console.log("on collapse button clicked");
-        setCollapsed(!collapsed)
+        setCollapsed(!collapsed);
+        onCollapseButtonClicked(collapsed);
     }
 
     const renderCollapsedButton = () => {

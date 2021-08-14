@@ -1,13 +1,8 @@
 import './App.scss';
-import {CustomMenu} from "./components/menu";
-import {navigationMenu} from "./navigation/menu";
-import {Header} from "./components/header";
+import {PageContainer} from './components/layout/pageContainer';
 
 function App() {
-    return <>
-        <Header/>
-        <CustomMenu menu={navigationMenu}/>
-    </>
+    return <PageContainer>ASDASDAASDDSA</PageContainer>
 }
 
 export default App;
