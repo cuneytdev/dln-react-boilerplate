@@ -1,10 +1,9 @@
 import './App.scss';
-import {Loader} from "./components/loader";
+import {CustomMenu} from "./components/menu";
+import {navigationMenu} from "./navigation/menu";
 
 function App() {
-    return (
-        <Loader message={"adsadsasdasd"}/>
-    );
+    return <CustomMenu menu={navigationMenu}/>
 }
 
 export default App;
