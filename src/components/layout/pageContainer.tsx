@@ -8,7 +8,8 @@ type PageContainerType = {
     children: any;
 }
 
-const initialSidebarWidth = 300;
+const initialSidebarWidth = 270;
+const collapsedSidebarWidth = 80;
 
 export const PageContainer: FunctionComponent<PageContainerType> = (props) => {
     const {children} = props;
@@ -21,13 +22,13 @@ export const PageContainer: FunctionComponent<PageContainerType> = (props) => {
 
     useEffect(() => {
         if (collapsed) {
-            setSidebarWidth(80)
+            setSidebarWidth(collapsedSidebarWidth)
         } else {
             setSidebarWidth(initialSidebarWidth)
         }
     }, [collapsed])
     return <div>
-        <Header onCollapseButtonClicked={onHeaderCollapsed}/>
+        <Header onCollapseButtonClicked={onHeaderCollapsed} appLogoWidth={sidebarWidth}/>
         <Sidebar width={sidebarWidth}>
             <CustomMenu menu={navigationMenu} collapsed={collapsed}/>
         </Sidebar>

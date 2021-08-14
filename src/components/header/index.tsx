@@ -8,10 +8,11 @@ type HeaderType = {
     showUserInfo?: boolean;
     showMenuItems?: boolean;
     onCollapseButtonClicked?: any;
+    appLogoWidth: number
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
-    const {showMenuItems, onCollapseButtonClicked} = props;
+    const {showMenuItems, onCollapseButtonClicked, appLogoWidth} = props;
     const headerTitle = 'Company';
     const [collapsed, setCollapsed] = useState(false);
 
@@ -29,7 +30,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
 
     const renderCollapsedAppIcon = () => {
         return <div className="header-logo">
-            <div className={collapsed ? 'collapsed' : ''}>
+            <div style={{width: appLogoWidth}} className={collapsed ? 'collapsed' : ''}>
                 <span>LOGO</span>
                 <a href="/">{!collapsed ? headerTitle : ''}</a>
             </div>
