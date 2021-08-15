@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from "react";
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
-import {Avatar, Badge} from "antd";
+import {UserInformation} from "./userInformation";
 
 type HeaderType = {
     appIcon?: string;
@@ -12,7 +12,7 @@ type HeaderType = {
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
-    const {showMenuItems, onCollapseButtonClicked, appLogoWidth} = props;
+    const {showMenuItems, onCollapseButtonClicked, appLogoWidth, userInfo} = props;
     const headerTitle = 'Company';
     const [collapsed, setCollapsed] = useState(false);
 
@@ -52,15 +52,10 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     }
 
     const renderUserInformation = () => {
-        return <div className="header-user-information">
-            <Badge count={5}>
-                <Avatar shape="square" size="large"/>
-            </Badge>
-            <div className="user-info">
-                <span>Hi, </span>
-                Mehmet Cüneyt Dalan
-            </div>
-        </div>
+        if (!userInfo) {
+            return;
+        }
+        return <UserInformation user={userInfo}/>
     }
 
     return <header className="header-container">

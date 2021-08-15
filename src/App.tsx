@@ -1,8 +1,8 @@
 import './App.scss';
-import {PageContainer} from './components/layout/pageContainer';
+import Router from './navigation/routing';
 
 function App() {
-    return <PageContainer>ASDASDAASDDSA</PageContainer>
+    return <Router/>
 }
 
 export default App;
