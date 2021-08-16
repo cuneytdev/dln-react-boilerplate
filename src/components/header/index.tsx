@@ -1,6 +1,8 @@
 import React, {FunctionComponent, useState} from "react";
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
 import {UserInformation} from "./userInformation";
+import {useDispatch, useSelector} from "react-redux";
+import {getCurrentLanguage} from "../../store/language/languageReducer";
 
 type HeaderType = {
     appIcon?: string;
@@ -24,7 +26,6 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     const [collapsed, setCollapsed] = useState(false);
 
     const handleCollapseToggleButtonClicked = () => {
-        console.log("on collapse button clicked");
         setCollapsed(!collapsed);
         onCollapseButtonClicked(collapsed);
     }
