@@ -1,4 +1,5 @@
 import React, {FunctionComponent} from 'react';
+import {Header} from "../../components/header";
 
 type LandingTemplateType = {
     children: any;
@@ -6,7 +7,8 @@ type LandingTemplateType = {
 
 export const LandingTemplate: FunctionComponent<LandingTemplateType> = (props) => {
     const {children} = props;
-    return <div><h1>LANDING TEMPLATE</h1>
+    return <div>
+        <Header appLogoWidth={300}/>
         {children}
     </div>
 }

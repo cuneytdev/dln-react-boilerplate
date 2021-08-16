@@ -27,14 +27,20 @@ export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
             setSidebarWidth(initialSidebarWidth)
         }
     }, [collapsed])
+
     return <div>
-        <Header onCollapseButtonClicked={onHeaderCollapsed} appLogoWidth={sidebarWidth} userInfo={'Mehmet Cüneyt Dalan'}/>
+        <Header onCollapseButtonClicked={onHeaderCollapsed}
+                collapsable
+                appLogoWidth={sidebarWidth}
+                userInfo={'Mehmet Cüneyt Dalan'}/>
         <Sidebar width={sidebarWidth}>
-            <CustomMenu menu={navigationMenu} collapsed={collapsed}/>
+            <CustomMenu
+                menu={navigationMenu}
+                collapsed={collapsed}/>
         </Sidebar>
-        <div style={{marginLeft: sidebarWidth}} className="page-content">
+        <div style={{marginLeft: sidebarWidth}}
+             className="page-content">
             {children}
         </div>
     </div>
-
 }

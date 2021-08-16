@@ -8,11 +8,18 @@ type HeaderType = {
     showUserInfo?: boolean;
     showMenuItems?: boolean;
     onCollapseButtonClicked?: any;
-    appLogoWidth: number
+    appLogoWidth: number,
+    collapsable?: boolean;
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
-    const {showMenuItems, onCollapseButtonClicked, appLogoWidth, userInfo} = props;
+    const {
+        showMenuItems,
+        onCollapseButtonClicked,
+        appLogoWidth,
+        userInfo,
+        collapsable
+    } = props;
     const headerTitle = 'Company';
     const [collapsed, setCollapsed] = useState(false);
 
@@ -23,6 +30,9 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     }
 
     const renderCollapsedButton = () => {
+        if (!collapsable) {
+            return;
+        }
         return collapsed
             ? <MenuUnfoldOutlined onClick={handleCollapseToggleButtonClicked}/>
             : <MenuFoldOutlined onClick={handleCollapseToggleButtonClicked}/>
@@ -69,6 +79,5 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
             </div>
             {renderUserInformation()}
         </div>
-
     </header>
 }

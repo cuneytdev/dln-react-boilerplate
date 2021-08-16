@@ -3,7 +3,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {Loader} from "../components/loader";
 
 const AdminPage = lazy((): any => import("../screens/admin/index"));
-const LandingPage = lazy((): any => import("../screens/landing/index"))
+const LandingPage = lazy((): any => import("../screens/landing/index"));
+const LoginPage = lazy((): any => import("../screens/login/index"))
 
 export default function Router() {
     return <BrowserRouter>
@@ -11,6 +12,9 @@ export default function Router() {
             <Switch>
                 <Route path="/admin">
                     <AdminPage/>
+                </Route>
+                <Route path="/login">
+                    <LoginPage/>
                 </Route>
                 <Route path="/">
                     <LandingPage/>
