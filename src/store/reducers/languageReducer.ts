@@ -1,10 +1,11 @@
 import {messages} from "../../constants/languages";
-import {SET_LANGUAGE} from "./languageActions";
+import {SET_LANGUAGE} from "../actions/languageActions";
 
 const initialState = {
     currentLanguage: messages["en-GB"]
 }
 
+//reducers
 export default function languageReducer(state = initialState, action: any) {
     switch (action.type) {
         case SET_LANGUAGE:
@@ -16,4 +17,5 @@ export default function languageReducer(state = initialState, action: any) {
     }
 }
 
+//selectors
 export const getCurrentLanguage = (state: any) => state.language.currentLanguage;
