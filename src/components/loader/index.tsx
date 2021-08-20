@@ -4,7 +4,7 @@ import {LoadingOutlined} from "@ant-design/icons";
 import {Spin} from "antd";
 
 type LoaderType = {
-    message: string;
+    message?: string;
 }
 
 export const Loader: FunctionComponent<LoaderType> = (props) => {

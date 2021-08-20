@@ -1,6 +1,8 @@
+import {CustomMenuItem} from "../../components/menu";
+
 export const SET_LANGUAGE = 'SET_LANGUAGE';
 
-export const switchLanguage = (language: any) => {
+export default function switchLanguage(language: CustomMenuItem) {
     return {
         type: SET_LANGUAGE,
         payload: language

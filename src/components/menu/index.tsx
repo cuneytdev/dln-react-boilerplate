@@ -7,7 +7,8 @@ export type CustomMenuItem = {
     router?: string;
     items?: CustomMenuItem[];
     icon?: any;
-    key: string
+    key: string;
+    [key: string]: any
 }
 
 type CustomMenuType = {

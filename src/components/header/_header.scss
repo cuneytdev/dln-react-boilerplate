@@ -88,6 +88,12 @@
         width: auto;
         padding: 0 1em;
 
+        .switch-language{
+          display: flex;
+          align-items: center;
+          padding: 0 1em;
+        }
+
         .ant-dropdown-trigger {
           cursor: pointer;
           transition: all ease-in-out 200ms;

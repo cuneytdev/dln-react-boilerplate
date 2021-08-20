@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {Avatar, Badge, Dropdown, Menu} from "antd";
 import {DownOutlined} from '@ant-design/icons';
+import SwitchLanguage from '../switchLanguage';
 
 type UserInformationType = {
     user: string;
@@ -19,6 +20,7 @@ export const UserInformation: FunctionComponent<UserInformationType> = (props) =
 
     return <div className="header-user-information">
         <div className="user-info">
+            <SwitchLanguage/>
             <Dropdown overlay={menu}>
                 <div>
                     <Badge count={0}>
