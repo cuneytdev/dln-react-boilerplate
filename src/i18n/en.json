@@ -1,5 +1,10 @@
 {
-  "app": {
-    "message": "Welcome!"
-  }
+  "app.message": "Welcome!",
+  "user.greeting": "Hi,",
+  "menu.menu1": "Menu 1",
+  "menu.menu2": "Menu 2",
+  "menu.menu3": "Menu 3",
+  "menu.subMenu1": "Sub Menu 1",
+  "menu.subMenu2": "Sub Menu 2",
+  "menu.subMenu3": "Sub Menu 3"
 }

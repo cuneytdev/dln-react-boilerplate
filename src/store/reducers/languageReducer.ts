@@ -1,8 +1,7 @@
-import {messages} from "../../constants/languages";
 import {SET_LANGUAGE} from "../actions/languageActions";
 
 const initialState = {
-    currentLanguage: navigator.language && navigator.language.includes("en") ? "en-US" : "tr-TR"
+    currentLanguage: navigator.language && navigator.language.includes("en") ? "en" : "tr"
 }
 
 //reducers

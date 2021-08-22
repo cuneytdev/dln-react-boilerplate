@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from "react";
+import React from "react";
 import {Menu} from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 
@@ -16,7 +16,7 @@ type CustomMenuType = {
     collapsed: boolean;
 }
 
-export const CustomMenu: FunctionComponent<CustomMenuType> = (props) => {
+export default function CustomMenu(props: CustomMenuType) {
     const {menu, collapsed} = props;
 
     const renderMenuItems = (menuItem: CustomMenuItem) => {

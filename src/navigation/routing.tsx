@@ -14,7 +14,7 @@ export default function Router() {
     const language = useSelector(getCurrentLanguage);
 
     return <BrowserRouter>
-        <IntlProvider locale={language.key} messages={messages[language.type]}>
+        <IntlProvider locale={language} messages={messages[language]}>
             <Suspense fallback={<Loader message="Loading App"/>}>
                 <Switch>
                     <Route path="/admin">

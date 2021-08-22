@@ -1,8 +1,9 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import {Header} from "../../components/header";
-import {CustomMenu} from "../../components/menu";
-import {navigationMenu} from "../../navigation/menu";
 import {Sidebar} from "../../components/sidebar";
+import CustomMenu from "../../components/menu";
+import {useIntl} from "react-intl";
+import getNavigationMenu from "../../navigation/menu";
 
 type PageContainerType = {
     children: any;
@@ -13,11 +14,16 @@ const collapsedSidebarWidth = 80;
 
 export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
     const {children} = props;
+    const intl = useIntl();
     const [collapsed, setCollapsed] = useState(false);
     const [sidebarWidth, setSidebarWidth] = useState(initialSidebarWidth);
 
     const onHeaderCollapsed = () => {
         setCollapsed(!collapsed);
+    }
+
+    const getMenu = () => {
+        return getNavigationMenu(intl);
     }
 
     useEffect(() => {
@@ -35,7 +41,7 @@ export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
                 userInfo={'Mehmet Cüneyt Dalan'}/>
         <Sidebar width={sidebarWidth}>
             <CustomMenu
-                menu={navigationMenu}
+                menu={getMenu()}
                 collapsed={collapsed}/>
         </Sidebar>
         <div style={{marginLeft: sidebarWidth}}
