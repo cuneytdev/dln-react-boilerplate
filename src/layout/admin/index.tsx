@@ -10,7 +10,7 @@ type PageContainerType = {
 }
 
 const initialSidebarWidth = 270;
-const collapsedSidebarWidth = 80;
+const collapsedSidebarWidth = 56;
 
 export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
     const {children} = props;

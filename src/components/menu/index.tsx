@@ -1,6 +1,5 @@
 import React from "react";
-import {Menu} from "antd";
-import SubMenu from "antd/lib/menu/SubMenu";
+import {Dropdown, Nav, Sidenav} from "rsuite";
 
 export type CustomMenuItem = {
     label: string;
@@ -21,26 +20,29 @@ export default function CustomMenu(props: CustomMenuType) {
 
     const renderMenuItems = (menuItem: CustomMenuItem) => {
         if (menuItem.items) {
-            return <SubMenu key={menuItem.key} icon={menuItem.icon} title={menuItem.label}>
-                {menuItem.items.map(item => renderMenuItem(item))}
-            </SubMenu>
+            return <Dropdown
+                placement="rightStart"
+                eventKey={menuItem.key}
+                title={menuItem.label}
+                icon={menuItem.icon}>
+                {menuItem.items.map(item => <Dropdown.Item icon={menuItem.icon} eventKey={item.key}>{item.label}</Dropdown.Item>)}
+            </Dropdown>
         } else {
             return renderMenuItem(menuItem);
         }
     }
 
     const renderMenuItem = (menuItem: CustomMenuItem) => {
-        return <Menu.Item key={menuItem.key} icon={menuItem.icon}>{menuItem.label}</Menu.Item>
+        return <Nav.Item eventKey={menuItem.key} icon={menuItem.icon}>{menuItem.label}</Nav.Item>
     }
 
-    return (
-        <div style={{width: '100%'}}>
-            <Menu
-                mode="inline"
-                inlineCollapsed={collapsed}>
+    return <Sidenav
+        expanded={!collapsed}>
+        <Sidenav.Body>
+            <Nav>
                 {menu?.map((item) => renderMenuItems(item))}
-            </Menu>
-        </div>
-    );
+            </Nav>
+        </Sidenav.Body>
+    </Sidenav>
 }
 

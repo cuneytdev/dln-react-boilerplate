@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useState} from "react";
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
-import {UserInformation} from "./userInformation";
+import {Avatar, Divider, Dropdown, Icon, Nav, Navbar} from "rsuite";
+import {useIntl} from "react-intl";
+import SwitchLanguage from "./switchLanguage";
 
 type HeaderType = {
     appIcon?: string;
@@ -14,13 +15,11 @@ type HeaderType = {
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
     const {
-        showMenuItems,
         onCollapseButtonClicked,
-        appLogoWidth,
         userInfo,
         collapsable
     } = props;
-    const headerTitle = 'Company';
+    const intl = useIntl();
     const [collapsed, setCollapsed] = useState(false);
 
     const handleCollapseToggleButtonClicked = () => {
@@ -32,51 +31,27 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         if (!collapsable) {
             return;
         }
-        return collapsed
-            ? <MenuUnfoldOutlined onClick={handleCollapseToggleButtonClicked}/>
-            : <MenuFoldOutlined onClick={handleCollapseToggleButtonClicked}/>
+        return <Nav.Item onClick={handleCollapseToggleButtonClicked}>
+            {collapsed ? <Icon size="2x" icon="angle-double-right"/> : <Icon size="2x" icon="angle-double-left"/>}
+        </Nav.Item>
     }
 
-    const renderCollapsedAppIcon = () => {
-        return <div className="header-logo">
-            <div style={{width: appLogoWidth}} className={collapsed ? 'collapsed' : ''}>
-                <span>LOGO</span>
-                <a href="/">{!collapsed ? headerTitle : ''}</a>
-            </div>
-        </div>
-    }
-
-    const renderHeaderMenu = () => {
-        if (!showMenuItems) {
-            return;
-        }
-        return <nav>
-            <a href="#">Home</a>
-            <a href="#" className="selected">Blog</a>
-            <a href="#">Pricing</a>
-            <a href="#">About</a>
-            <a href="#">Faq</a>
-            <a href="#">Contact</a>
-        </nav>
-    }
-
-    const renderUserInformation = () => {
-        if (!userInfo) {
-            return;
-        }
-        return <UserInformation user={userInfo}/>
-    }
-
-    return <header className="header-container">
-        <div className="header">
-            {renderCollapsedAppIcon()}
-            <div className="collapse-menu-container">
+    return <Navbar className={"navbar"}>
+        <Navbar.Header>
+            <a href="#" className="navbar-logo">DLN APP</a>
+        </Navbar.Header>
+        <Navbar.Body>
+            <Nav>
                 {renderCollapsedButton()}
-            </div>
-            <div className="header-menu">
-                {renderHeaderMenu()}
-            </div>
-            {renderUserInformation()}
-        </div>
-    </header>
+            </Nav>
+            <Nav pullRight>
+                <SwitchLanguage/>
+                <Divider vertical/>
+                <Nav.Item> <Avatar circle>U</Avatar></Nav.Item>
+                <Dropdown title={intl.formatMessage({id: "user.greeting"}) + userInfo}>
+                    <Dropdown.Item>Logout</Dropdown.Item>
+                </Dropdown>
+            </Nav>
+        </Navbar.Body>
+    </Navbar>
 }

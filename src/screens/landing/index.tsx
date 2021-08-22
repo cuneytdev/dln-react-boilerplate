@@ -1,7 +1,7 @@
 import React from "react";
 import {LandingTemplate} from "../../layout/landing";
 import {useHistory} from 'react-router-dom';
-import {Button} from "antd";
+import { Button } from "rsuite";
 
 export default function Landing() {
     const history = useHistory()

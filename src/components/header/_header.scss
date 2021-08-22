@@ -1,137 +1,36 @@
 @import "src/assets/styles/constants";
 
-.header-container {
-  background-color: $header-background-color;
-  box-shadow: 0 1px 1px #ccc;
-  height: 80px;
-  display: flex;
-  color: #ffffff;
-  box-sizing: border-box;
-  top: -100px;
-  transition: top 0.3s;
-  align-items: center;
-  -webkit-transition: top 0.3s;
-  width: 100%;
+.navbar {
+  padding: 0.5em;
 
-  .header {
+  .navbar-logo {
+    padding: 0 1em;
+  }
+
+  .rs-nav > ul {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
     align-items: center;
+  }
 
-    .header-logo {
-      div {
-        transition: all ease-in-out 200ms;
+  .rs-navbar-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+
+  .rs-dropdown-menu {
+    width: 100%;
+    text-align: center;
+  }
+
+  .rs-navbar-nav {
+    .rs-nav-item {
+      & > a {
+        padding: 0.5em;
         display: flex;
         justify-content: center;
-        font-size: 1.5rem;
-
-        &.collapsed {
-          width: 70px;
-        }
+        align-items: center;
       }
-    }
-
-
-    a {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
-    nav {
-      font: 16px Arial, Helvetica, sans-serif;
-      line-height: 40px;
-      float: right;
-
-      a {
-        display: inline-block;
-        padding: 0 5px;
-        text-decoration: none;
-        color: #ffffff;
-        opacity: 0.9;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        &.selected {
-          color: #608bd2;
-          pointer-events: none;
-          opacity: 1;
-        }
-      }
-    }
-
-    .collapse-menu-container {
-      width: 100%;
-      align-items: center;
-      display: flex;
-
-      span {
-        font-size: 1.8em;
-        cursor: pointer;
-
-        &:hover {
-          opacity: 0.6;
-        }
-      }
-    }
-
-    .header-user-information {
-      display: flex;
-      width: 100%;
-      justify-content: flex-end;
-      align-items: center;
-
-      .user-info {
-        display: flex;
-        width: auto;
-        padding: 0 1em;
-
-        .switch-language{
-          display: flex;
-          align-items: center;
-          padding: 0 1em;
-        }
-
-        .ant-dropdown-trigger {
-          cursor: pointer;
-          transition: all ease-in-out 200ms;
-
-          &:hover {
-            opacity: 0.5;
-          }
-        }
-
-        .ant-dropdown-link {
-          padding: .5em;
-        }
-
-        .anticon {
-          padding: .5em;
-        }
-      }
-    }
-
-    .header-menu {
-      width: 100%;
-    }
-  }
-}
-
-/*	The header placeholder. It is displayed when the header is fixed to the top of the
-	browser window, in order to prevent the content of the page from jumping up. */
-
-.header-fixed-placeholder {
-  height: 80px;
-  display: none;
-}
-
-
-@media (max-width: $laptop-screen) {
-  .ant-dropdown-trigger {
-    & > a {
-      display: none;
     }
   }
 }
