@@ -2,6 +2,11 @@ import React, {FunctionComponent, useState} from "react";
 import {Avatar, Divider, Dropdown, Icon, Nav, Navbar} from "rsuite";
 import {useIntl} from "react-intl";
 import SwitchLanguage from "./switchLanguage";
+import {useHistory} from "react-router-dom";
+
+enum MENU_ITEMS {
+    LOGOUT = 'logout'
+}
 
 type HeaderType = {
     appIcon?: string;
@@ -17,14 +22,22 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     const {
         onCollapseButtonClicked,
         userInfo,
-        collapsable
+        collapsable,
     } = props;
+    const history = useHistory();
     const intl = useIntl();
     const [collapsed, setCollapsed] = useState(false);
 
     const handleCollapseToggleButtonClicked = () => {
         setCollapsed(!collapsed);
         onCollapseButtonClicked(collapsed);
+    }
+
+    const onHandleMenuClicked = (key: string) => {
+        console.log(key);
+        if (key === MENU_ITEMS.LOGOUT) {
+            history.push('/')
+        }
     }
 
     const renderCollapsedButton = () => {
@@ -36,6 +49,18 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         </Nav.Item>
     }
 
+    const renderRightNavbar = () => {
+        return <Nav pullRight>
+            <SwitchLanguage/>
+            {userInfo && <> <Divider vertical/>
+                <Nav.Item> <Avatar circle>U</Avatar></Nav.Item>
+                <Dropdown onSelect={onHandleMenuClicked} title={intl.formatMessage({id: "user.greeting"}) + userInfo}>
+                    <Dropdown.Item
+                        eventKey={MENU_ITEMS.LOGOUT}>{intl.formatMessage({id: "button.logout"})}</Dropdown.Item>
+                </Dropdown></>}
+        </Nav>
+    }
+
     return <Navbar className={"navbar"}>
         <Navbar.Header>
             <a href="#" className="navbar-logo">DLN APP</a>
@@ -44,14 +69,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
             <Nav>
                 {renderCollapsedButton()}
             </Nav>
-            <Nav pullRight>
-                <SwitchLanguage/>
-                <Divider vertical/>
-                <Nav.Item> <Avatar circle>U</Avatar></Nav.Item>
-                <Dropdown title={intl.formatMessage({id: "user.greeting"}) + userInfo}>
-                    <Dropdown.Item>Logout</Dropdown.Item>
-                </Dropdown>
-            </Nav>
+            {renderRightNavbar()}
         </Navbar.Body>
     </Navbar>
 }
