@@ -63,7 +63,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
 
     return <Navbar className={"navbar"}>
         <Navbar.Header>
-            <a href="#" className="navbar-logo">DLN APP</a>
+            <a href="/" className="navbar-logo">DLN APP</a>
         </Navbar.Header>
         <Navbar.Body>
             <Nav>
