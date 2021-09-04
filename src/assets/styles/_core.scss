@@ -2,3 +2,8 @@ body {
   font-family: $font-family;
   font-size: $font-size;
 }
+
+.content {
+  padding-top: 70px;
+  transition: all ease-in-out 200ms;
+}

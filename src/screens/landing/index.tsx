@@ -13,7 +13,9 @@ export default function Landing() {
     }
 
     return <LandingTemplate>
-        {intl.formatMessage({id: "app.message"})}
-        <Button onClick={redirectToAdmin}>Go To Admin</Button>
+        <div className={"content"}>
+            {intl.formatMessage({id: "app.message"})}
+            <Button onClick={redirectToAdmin}>Go To Admin</Button>
+        </div>
     </LandingTemplate>
 }

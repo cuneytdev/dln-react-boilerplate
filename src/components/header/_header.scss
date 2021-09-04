@@ -2,6 +2,9 @@
 
 .navbar {
   padding: 0.5em 10em;
+  position: fixed;
+  width: 100%;
+  height: 70px;
 
   &.navbarAuthenticated{
     padding: 0.5em;

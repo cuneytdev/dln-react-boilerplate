@@ -7,5 +7,11 @@
   "menu.subMenu1": "Alt Menü 1",
   "menu.subMenu2": "Alt Menü 2",
   "menu.subMenu3": "Alt Menü 3",
-  "button.logout": "Çıkış"
+  "button.logout": "Çıkış",
+  "button.login": "Giriş",
+  "button.submit": "Tamam",
+  "button.cancel": "Geri",
+  "label.username": "Kullanıcı Adı",
+  "label.password": "Şifre",
+  "validation.required": "Bu alan zorunludur."
 }

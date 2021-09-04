@@ -7,5 +7,11 @@
   "menu.subMenu1": "Sub Menu 1",
   "menu.subMenu2": "Sub Menu 2",
   "menu.subMenu3": "Sub Menu 3",
-  "button.logout": "Logout"
+  "button.logout": "Logout",
+  "button.login": "Login",
+  "button.submit": "Submit",
+  "button.cancel": "Cancel",
+  "label.username": "Username",
+  "label.password": "Password",
+  "validation.required": "This field is required."
 }

@@ -45,8 +45,7 @@ export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
                 menu={getMenu()}
                 collapsed={collapsed}/>
         </Sidebar>
-        <div style={{marginLeft: sidebarWidth}}
-             className="page-content">
+        <div style={{marginLeft: sidebarWidth}} className="page-content content">
             {children}
         </div>
     </div>

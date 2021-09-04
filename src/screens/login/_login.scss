@@ -1,0 +1,14 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  padding: 10em 0;
+
+  .login-panel {
+    width: 400px;
+  }
+
+  .rs-btn-toolbar{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
