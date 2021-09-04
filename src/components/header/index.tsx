@@ -65,13 +65,16 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         </Nav.Item>
     }
 
+    const renderUserInfoDropdownHeader = () => {
+        return <><Avatar circle>U</Avatar><span className={"user-info-text"}>{intl.formatMessage({id: "user.greeting"}) + userInfo}</span></>
+    }
+
     const renderRightNavbar = () => {
         return <Nav pullRight>
             <SwitchLanguage/>
             {showLoginButton && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}> Login</Nav.Item>}
             {showUserInfo && <> <Divider vertical/>
-                <Nav.Item> <Avatar circle>U</Avatar></Nav.Item>
-                <Dropdown onSelect={onHandleMenuClicked} title={intl.formatMessage({id: "user.greeting"}) + userInfo}>
+                <Dropdown className={"user-info"} onSelect={onHandleMenuClicked} title={renderUserInfoDropdownHeader()}>
                     <Dropdown.Item
                         eventKey={MENU_ITEMS.LOGOUT}>{intl.formatMessage({id: "button.logout"})}</Dropdown.Item>
                 </Dropdown></>}
