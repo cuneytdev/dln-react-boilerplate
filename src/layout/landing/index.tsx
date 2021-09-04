@@ -8,7 +8,9 @@ type LandingTemplateType = {
 export const LandingTemplate: FunctionComponent<LandingTemplateType> = (props) => {
     const {children} = props;
     return <div>
-        <Header appLogoWidth={300}/>
+        <Header showUserInfo={false}
+                appLogoWidth={300}
+                showLoginButton/>
         {children}
     </div>
 }

@@ -38,6 +38,7 @@ export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
         <Header onCollapseButtonClicked={onHeaderCollapsed}
                 collapsable
                 appLogoWidth={sidebarWidth}
+                showUserInfo
                 userInfo={'Mehmet Cüneyt Dalan'}/>
         <Sidebar width={sidebarWidth}>
             <CustomMenu

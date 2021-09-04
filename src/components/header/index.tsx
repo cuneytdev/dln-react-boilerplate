@@ -3,9 +3,11 @@ import {Avatar, Divider, Dropdown, Icon, Nav, Navbar} from "rsuite";
 import {useIntl} from "react-intl";
 import SwitchLanguage from "./switchLanguage";
 import {useHistory} from "react-router-dom";
+import classNames from "classnames";
 
 enum MENU_ITEMS {
-    LOGOUT = 'logout'
+    LOGOUT = 'logout',
+    LOGIN = 'login'
 }
 
 type HeaderType = {
@@ -16,6 +18,7 @@ type HeaderType = {
     onCollapseButtonClicked?: any;
     appLogoWidth: number,
     collapsable?: boolean;
+    showLoginButton?: boolean
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
@@ -23,6 +26,8 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         onCollapseButtonClicked,
         userInfo,
         collapsable,
+        showUserInfo,
+        showLoginButton
     } = props;
     const history = useHistory();
     const intl = useIntl();
@@ -34,11 +39,22 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     }
 
     const onHandleMenuClicked = (key: string) => {
-        console.log(key);
-        if (key === MENU_ITEMS.LOGOUT) {
-            history.push('/')
+        switch (key) {
+            case MENU_ITEMS.LOGOUT:
+                history.push('/');
+                break;
+            case MENU_ITEMS.LOGIN:
+                history.push('/login')
+                break;
+            default:
+                break;
         }
     }
+
+    const navBarClassnames = classNames({
+        navbar: true,
+        navbarAuthenticated: showUserInfo
+    })
 
     const renderCollapsedButton = () => {
         if (!collapsable) {
@@ -52,7 +68,8 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     const renderRightNavbar = () => {
         return <Nav pullRight>
             <SwitchLanguage/>
-            {userInfo && <> <Divider vertical/>
+            {showLoginButton && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}> Login</Nav.Item>}
+            {showUserInfo && <> <Divider vertical/>
                 <Nav.Item> <Avatar circle>U</Avatar></Nav.Item>
                 <Dropdown onSelect={onHandleMenuClicked} title={intl.formatMessage({id: "user.greeting"}) + userInfo}>
                     <Dropdown.Item
@@ -61,7 +78,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         </Nav>
     }
 
-    return <Navbar className={"navbar"}>
+    return <Navbar className={navBarClassnames}>
         <Navbar.Header>
             <a href="/" className="navbar-logo">DLN APP</a>
         </Navbar.Header>

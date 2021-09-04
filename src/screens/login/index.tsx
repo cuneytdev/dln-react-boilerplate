@@ -1,9 +1,8 @@
 import React from 'react';
+import {LoginTemplate} from "../../layout/login";
 
 export default function LoginPage() {
-    return <div>
-        <h2>
-            WELCOME TO LOGIN PAGE
-        </h2>
-    </div>
+    return <LoginTemplate>
+        Welcome To login page
+    </LoginTemplate>
 }
