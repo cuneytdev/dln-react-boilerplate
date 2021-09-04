@@ -1,44 +1,47 @@
 import React, {useState} from 'react';
-import {Button, ButtonToolbar, ControlLabel, Form, FormControl, FormGroup, Schema} from 'rsuite';
+import {UserInfo} from "../index";
+import {Button, ButtonToolbar, ControlLabel, Form, FormControl, FormGroup, Schema} from "rsuite";
 import {useIntl} from "react-intl";
 import {isEmpty} from "../../../utils/utils";
-import {UserInfo} from "../index";
+
+type ForgotPasswordFormType = {
+    userInfo: UserInfo,
+    handleCancelSubmit: Function
+}
 
 const {StringType} = Schema.Types;
 
-type LoginFormType = {
-    onSubmit: Function,
-    userInfo: UserInfo,
-    showForgotPassword: Function
-}
-
-export default function LoginForm(props: LoginFormType) {
-    const {onSubmit, userInfo, showForgotPassword} = props;
+export default function ForgotPasswordForm(props: ForgotPasswordFormType) {
+    const {userInfo, handleCancelSubmit} = props;
     const intl = useIntl();
     const [formError, setFormError] = useState({});
-    const [formValue, setFormValue] = useState(userInfo);
+    const [formValue, setFormValue] = useState({username: userInfo.username, password: "", verifyPassword: ""});
     const [form, setForm] = useState<any>();
+
 
     const model = Schema.Model({
         username: StringType().isRequired(intl.formatMessage({id: "validation.required"})),
         password: StringType()
+            .isRequired(intl.formatMessage({id: "validation.required"})),
+        verifyPassword: StringType().addRule((value, data) => {
+            return value === data.password;
+        }, intl.formatMessage({id: "validation.passwordNotMatched"}))
             .isRequired(intl.formatMessage({id: "validation.required"}))
     });
+
+    const checkButtonIsDisabled = () => {
+        return !isEmpty(formError);
+    }
 
     const handleSubmit = () => {
         if (!form.check()) {
             console.error(formError);
             return;
         }
-        onSubmit(formValue);
     }
 
-    const handleForgotPassword = () => {
-        showForgotPassword(true);
-    }
-
-    const checkButtonIsDisabled = () => {
-        return !isEmpty(formError);
+    const handleCancelClicked = () => {
+        handleCancelSubmit()
     }
 
     return <Form fluid
@@ -61,12 +64,19 @@ export default function LoginForm(props: LoginFormType) {
                 placeholder={intl.formatMessage({id: "label.password"})}/>
         </FormGroup>
         <FormGroup>
+            <ControlLabel>{intl.formatMessage({id: "label.verifyPassword"})}</ControlLabel>
+            <FormControl
+                name="verifyPassword"
+                type="password"
+                placeholder={intl.formatMessage({id: "label.verifyPassword"})}/>
+        </FormGroup>
+        <FormGroup>
             <ButtonToolbar>
-                <Button onClick={handleForgotPassword}>{intl.formatMessage({id: "button.forgotPassword"})}</Button>
+                <Button onClick={handleCancelClicked}>{intl.formatMessage({id: "button.cancel"})}</Button>
                 <Button type="submit"
                         disabled={checkButtonIsDisabled()}
                         onClick={handleSubmit}
-                        appearance="primary">{intl.formatMessage({id: "button.login"})}</Button>
+                        appearance="primary">{intl.formatMessage({id: "button.submit"})}</Button>
             </ButtonToolbar>
         </FormGroup>
     </Form>

@@ -11,7 +11,11 @@
   "button.login": "Login",
   "button.submit": "Submit",
   "button.cancel": "Cancel",
+  "button.forgotPassword": "Forgot Password",
   "label.username": "Username",
   "label.password": "Password",
-  "validation.required": "This field is required."
+  "label.verifyPassword": "Verify Password",
+  "label.code": "Code",
+  "validation.required": "This field is required.",
+  "validation.passwordNotMatched": "The two passwords do not match."
 }

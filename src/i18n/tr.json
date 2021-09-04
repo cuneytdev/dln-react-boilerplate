@@ -11,7 +11,11 @@
   "button.login": "Giriş",
   "button.submit": "Tamam",
   "button.cancel": "Geri",
+  "button.forgotPassword": "Şifremi Unuttum",
   "label.username": "Kullanıcı Adı",
   "label.password": "Şifre",
-  "validation.required": "Bu alan zorunludur."
+  "label.verifyPassword": "Yeniden Şifre",
+  "label.code": "Kod",
+  "validation.required": "Bu alan zorunludur.",
+  "validation.passwordNotMatched": "Girdiğiniz şifreler birbiriyle eşleşmiyor."
 }

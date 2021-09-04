@@ -1,27 +1,25 @@
 import React, {useState} from 'react';
-import {Button, ButtonToolbar, ControlLabel, Form, FormControl, FormGroup, Schema} from 'rsuite';
+import {Button, ButtonToolbar, ControlLabel, Form, FormControl, FormGroup, Schema} from "rsuite";
 import {useIntl} from "react-intl";
 import {isEmpty} from "../../../utils/utils";
-import {UserInfo} from "../index";
 
 const {StringType} = Schema.Types;
 
-type LoginFormType = {
-    onSubmit: Function,
-    userInfo: UserInfo,
-    showForgotPassword: Function
+type SubmitCodeFormType = {
+    username: string,
+    onCodeValidation: Function
 }
 
-export default function LoginForm(props: LoginFormType) {
-    const {onSubmit, userInfo, showForgotPassword} = props;
-    const intl = useIntl();
+export default function SubmitCodeForm(props: SubmitCodeFormType) {
+    const {username, onCodeValidation} = props;
+    const intl = useIntl()
     const [formError, setFormError] = useState({});
-    const [formValue, setFormValue] = useState(userInfo);
+    const [formValue, setFormValue] = useState({username});
     const [form, setForm] = useState<any>();
 
     const model = Schema.Model({
         username: StringType().isRequired(intl.formatMessage({id: "validation.required"})),
-        password: StringType()
+        code: StringType()
             .isRequired(intl.formatMessage({id: "validation.required"}))
     });
 
@@ -30,11 +28,7 @@ export default function LoginForm(props: LoginFormType) {
             console.error(formError);
             return;
         }
-        onSubmit(formValue);
-    }
-
-    const handleForgotPassword = () => {
-        showForgotPassword(true);
+        onCodeValidation()
     }
 
     const checkButtonIsDisabled = () => {
@@ -54,19 +48,18 @@ export default function LoginForm(props: LoginFormType) {
                 placeholder={intl.formatMessage({id: "label.username"})}/>
         </FormGroup>
         <FormGroup>
-            <ControlLabel>{intl.formatMessage({id: "label.password"})}</ControlLabel>
+            <ControlLabel>{intl.formatMessage({id: "label.code"})}</ControlLabel>
             <FormControl
-                name="password"
-                type="password"
-                placeholder={intl.formatMessage({id: "label.password"})}/>
+                name="code"
+                placeholder={intl.formatMessage({id: "label.code"})}/>
         </FormGroup>
         <FormGroup>
             <ButtonToolbar>
-                <Button onClick={handleForgotPassword}>{intl.formatMessage({id: "button.forgotPassword"})}</Button>
+                <div/>
                 <Button type="submit"
                         disabled={checkButtonIsDisabled()}
                         onClick={handleSubmit}
-                        appearance="primary">{intl.formatMessage({id: "button.login"})}</Button>
+                        appearance="primary">{intl.formatMessage({id: "button.submit"})}</Button>
             </ButtonToolbar>
         </FormGroup>
     </Form>

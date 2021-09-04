@@ -2,7 +2,6 @@ import './App.scss';
 import Router from './navigation/routing';
 import {Provider} from "react-redux";
 import {store} from "./store";
-import 'rsuite/lib/styles/themes/dark/index.less';
 import 'rsuite/lib/styles/themes/default/index.less';
 
 function App() {
