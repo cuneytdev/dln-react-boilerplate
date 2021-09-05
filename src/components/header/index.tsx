@@ -17,14 +17,18 @@ type HeaderType = {
     showMenuItems?: boolean;
     onCollapseButtonClicked?: any;
     appLogoWidth: number,
-    menu?: CustomMenuItem[]
+    menu?: CustomMenuItem[],
+    isMobile?: boolean,
+    showDrawer: Function
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
     const {
         onCollapseButtonClicked,
         userInfo,
-        menu
+        menu,
+        isMobile,
+        showDrawer
     } = props;
     const history = useHistory();
     const intl = useIntl();
@@ -53,8 +57,12 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         navbarAuthenticated: userInfo
     })
 
+    const onShowDrawer = () => {
+        showDrawer(true);
+    }
+
     const renderCollapsedButton = () => {
-        if (!userInfo) {
+        if (!userInfo || isMobile) {
             return;
         }
         return <Nav.Item onClick={handleCollapseToggleButtonClicked}>
@@ -68,7 +76,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     }
 
     const renderTabMenus = () => {
-        if (!menu) {
+        if (!menu || isMobile) {
             return;
         }
         return menu.map(item => <Nav.Item onSelect={onHandleMenuClicked} eventKey={item.router}>{item.label}</Nav.Item>)
@@ -76,7 +84,8 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
 
     const renderRightNavbar = () => {
         return <Nav pullRight>
-            {!userInfo && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}>{intl.formatMessage({id: "button.login"})}</Nav.Item>}
+            {!userInfo && <Nav.Item onSelect={onHandleMenuClicked}
+                                    eventKey={MENU_ITEMS.LOGIN}>{intl.formatMessage({id: "button.login"})}</Nav.Item>}
             {renderTabMenus()}
             {userInfo && <>
                 <Dropdown className={"user-info"} onSelect={onHandleMenuClicked} title={renderUserInfoDropdownHeader()}>
@@ -87,8 +96,16 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         </Nav>
     }
 
+    const renderDrawerButton = () => {
+        if (!isMobile) {
+            return;
+        }
+        return <div onClick={onShowDrawer}><Icon icon={"bars"}/></div>
+    }
+
     return <Navbar className={navBarClassnames}>
         <Navbar.Header>
+            {renderDrawerButton()}
             <a href="/" className="navbar-logo">DLN APP</a>
         </Navbar.Header>
         <Navbar.Body>

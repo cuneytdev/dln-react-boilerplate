@@ -1,29 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Drawer} from "rsuite";
-import {TypeAttributes} from "rsuite/es/@types/common";
-import Size = TypeAttributes.Size;
-import Placement4 = TypeAttributes.Placement4;
+import {TypeAttributes} from 'rsuite/es/@types/common';
+
+type Placement4 = TypeAttributes.Placement4;
+type Size = TypeAttributes.Size;
 
 type CustomDrawerType = {
     size: Size;
     placement: Placement4;
     show: boolean;
-    children: any;
-    title?: string
+    title?: string;
+    children: any,
+    onHide: Function
 }
 
 export default function CustomDrawer(props: CustomDrawerType) {
-    const {size, placement, show, children, title} = props;
-    const [showDrawer, setShowDrawer] = useState(show)
+    const {size, placement, show, title, children, onHide} = props;
 
     const onHideDrawer = () => {
-        setShowDrawer(false)
+        onHide(false)
     }
 
     return <Drawer
         size={size}
         placement={placement}
-        show={showDrawer}
+        show={show}
         onHide={onHideDrawer}>
         <Drawer.Header>
             <Drawer.Title>{title}</Drawer.Title>
