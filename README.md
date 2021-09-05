@@ -1,5 +1,5 @@
 # dln-react-boilerplate
-React Boilerplate with Ant Design
+React Boilerplate with using Rsuite
 
 # Getting Started with Create React App
 

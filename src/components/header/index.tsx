@@ -13,21 +13,15 @@ enum MENU_ITEMS {
 type HeaderType = {
     appIcon?: string;
     userInfo?: any;
-    showUserInfo?: boolean;
     showMenuItems?: boolean;
     onCollapseButtonClicked?: any;
     appLogoWidth: number,
-    collapsable?: boolean;
-    showLoginButton?: boolean
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
     const {
         onCollapseButtonClicked,
         userInfo,
-        collapsable,
-        showUserInfo,
-        showLoginButton
     } = props;
     const history = useHistory();
     const intl = useIntl();
@@ -53,11 +47,11 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
 
     const navBarClassnames = classNames({
         navbar: true,
-        navbarAuthenticated: showUserInfo
+        navbarAuthenticated: userInfo
     })
 
     const renderCollapsedButton = () => {
-        if (!collapsable) {
+        if (!userInfo) {
             return;
         }
         return <Nav.Item onClick={handleCollapseToggleButtonClicked}>
@@ -66,14 +60,15 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     }
 
     const renderUserInfoDropdownHeader = () => {
-        return <><Avatar circle>U</Avatar><span className={"user-info-text"}>{intl.formatMessage({id: "user.greeting"}) + userInfo}</span></>
+        return <><Avatar circle>U</Avatar><span
+            className={"user-info-text"}>{intl.formatMessage({id: "user.greeting"}) + userInfo}</span></>
     }
 
     const renderRightNavbar = () => {
         return <Nav pullRight>
             <SwitchLanguage/>
-            {showLoginButton && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}> Login</Nav.Item>}
-            {showUserInfo && <> <Divider vertical/>
+            {!userInfo && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}> Login</Nav.Item>}
+            {userInfo && <> <Divider vertical/>
                 <Dropdown className={"user-info"} onSelect={onHandleMenuClicked} title={renderUserInfoDropdownHeader()}>
                     <Dropdown.Item
                         eventKey={MENU_ITEMS.LOGOUT}>{intl.formatMessage({id: "button.logout"})}</Dropdown.Item>

@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from "react";
-import {Header} from "../../components/header";
+import LayoutWrapper from "../../components/layoutWrapper";
 
 type LoginTemplateType = {
     children: any;
@@ -7,8 +7,7 @@ type LoginTemplateType = {
 
 export const LoginTemplate: FunctionComponent<LoginTemplateType> = (props) => {
     const {children} = props;
-    return <div>
-        <Header showUserInfo={false} appLogoWidth={300}/>
+    return <LayoutWrapper showSidebar={false}>
         {children}
-    </div>
+    </LayoutWrapper>
 }
