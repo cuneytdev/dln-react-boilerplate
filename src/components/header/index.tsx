@@ -4,6 +4,7 @@ import {useIntl} from "react-intl";
 import SwitchLanguage from "./switchLanguage";
 import {useHistory} from "react-router-dom";
 import classNames from "classnames";
+import {CustomMenuItem} from "../menu";
 
 enum MENU_ITEMS {
     LOGOUT = 'logout',
@@ -16,12 +17,14 @@ type HeaderType = {
     showMenuItems?: boolean;
     onCollapseButtonClicked?: any;
     appLogoWidth: number,
+    menu?: CustomMenuItem[]
 }
 
 export const Header: FunctionComponent<HeaderType> = (props) => {
     const {
         onCollapseButtonClicked,
         userInfo,
+        menu
     } = props;
     const history = useHistory();
     const intl = useIntl();
@@ -41,7 +44,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
                 history.push('/login')
                 break;
             default:
-                break;
+                history.push(key)
         }
     }
 
@@ -64,8 +67,16 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
             className={"user-info-text"}>{intl.formatMessage({id: "user.greeting"}) + userInfo}</span></>
     }
 
+    const renderTabMenus = () => {
+        if (!menu) {
+            return;
+        }
+        return menu.map(item => <Nav.Item onSelect={onHandleMenuClicked} eventKey={item.router}>{item.label}</Nav.Item>)
+    }
+
     const renderRightNavbar = () => {
         return <Nav pullRight>
+            {renderTabMenus()}
             <SwitchLanguage/>
             {!userInfo && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}> Login</Nav.Item>}
             {userInfo && <> <Divider vertical/>

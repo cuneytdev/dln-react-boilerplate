@@ -14,7 +14,7 @@ export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
     const getMenu = () => {
         return getNavigationMenu(intl);
     }
-    return <LayoutWrapper menu={getMenu()} showSidebar={true} userInfo={"Cüneyt Dalan"}>
+    return <LayoutWrapper sidebarMenu={getMenu()} showSidebar={true} userInfo={"Cüneyt Dalan"}>
         {children}
     </LayoutWrapper>
 }

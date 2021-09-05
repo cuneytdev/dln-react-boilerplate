@@ -4,7 +4,8 @@ import {Header} from "../header";
 import {Sidebar} from "../sidebar";
 
 type LayoutWrapperType = {
-    menu?: CustomMenuItem[],
+    sidebarMenu?: CustomMenuItem[],
+    tabMenu?: CustomMenuItem[],
     children: any,
     showSidebar: boolean,
     userInfo?: any
@@ -14,7 +15,7 @@ const initialSidebarWidth = 270;
 const collapsedSidebarWidth = 56;
 
 export default function LayoutWrapper(props: LayoutWrapperType) {
-    const {menu, children, showSidebar, userInfo} = props;
+    const {sidebarMenu, children, showSidebar, userInfo, tabMenu} = props;
     const [collapsed, setCollapsed] = useState(false);
     const [sidebarWidth, setSidebarWidth] = useState(initialSidebarWidth);
 
@@ -36,13 +37,14 @@ export default function LayoutWrapper(props: LayoutWrapperType) {
         }
         return <Sidebar width={sidebarWidth}>
             <CustomMenu
-                menu={menu}
+                menu={sidebarMenu}
                 collapsed={collapsed}/>
         </Sidebar>
     }
 
     return <div>
         <Header onCollapseButtonClicked={onHeaderCollapsed}
+                menu={tabMenu}
                 appLogoWidth={sidebarWidth}
                 userInfo={userInfo}/>
         {renderSidebar()}
