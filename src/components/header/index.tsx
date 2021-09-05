@@ -76,14 +76,14 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
 
     const renderRightNavbar = () => {
         return <Nav pullRight>
+            {!userInfo && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}>{intl.formatMessage({id: "button.login"})}</Nav.Item>}
             {renderTabMenus()}
-            <SwitchLanguage/>
-            {!userInfo && <Nav.Item onSelect={onHandleMenuClicked} eventKey={MENU_ITEMS.LOGIN}> Login</Nav.Item>}
-            {userInfo && <> <Divider vertical/>
+            {userInfo && <>
                 <Dropdown className={"user-info"} onSelect={onHandleMenuClicked} title={renderUserInfoDropdownHeader()}>
                     <Dropdown.Item
                         eventKey={MENU_ITEMS.LOGOUT}>{intl.formatMessage({id: "button.logout"})}</Dropdown.Item>
-                </Dropdown></>}
+                </Dropdown><Divider vertical/></>}
+            <SwitchLanguage/>
         </Nav>
     }
 
