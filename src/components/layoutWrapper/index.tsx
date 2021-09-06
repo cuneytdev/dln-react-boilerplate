@@ -59,7 +59,7 @@ export default function LayoutWrapper(props: LayoutWrapperType) {
     }
 
     const contentStyles = () => {
-        if (isMobile) {
+        if (isMobile || !showSidebar) {
             return {marginLeft: 0}
         }
         return {marginLeft: sidebarWidth}

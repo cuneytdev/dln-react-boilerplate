@@ -85,13 +85,20 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     const renderRightNavbar = () => {
         return <Nav pullRight>
             {!userInfo && <Nav.Item onSelect={onHandleMenuClicked}
-                                    eventKey={MENU_ITEMS.LOGIN}>{intl.formatMessage({id: "button.login"})}</Nav.Item>}
+                                    eventKey={MENU_ITEMS.LOGIN}>
+                {intl.formatMessage({id: "button.login"})}
+            </Nav.Item>}
             {renderTabMenus()}
             {userInfo && <>
-                <Dropdown className={"user-info"} onSelect={onHandleMenuClicked} title={renderUserInfoDropdownHeader()}>
+                <Dropdown className={"user-info"}
+                          onSelect={onHandleMenuClicked}
+                          title={renderUserInfoDropdownHeader()}>
                     <Dropdown.Item
-                        eventKey={MENU_ITEMS.LOGOUT}>{intl.formatMessage({id: "button.logout"})}</Dropdown.Item>
-                </Dropdown><Divider vertical/></>}
+                        eventKey={MENU_ITEMS.LOGOUT}>
+                        {intl.formatMessage({id: "button.logout"})}
+                    </Dropdown.Item>
+                </Dropdown>
+                <Divider vertical/></>}
             <SwitchLanguage/>
         </Nav>
     }
@@ -100,7 +107,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         if (!isMobile) {
             return;
         }
-        return <div onClick={onShowDrawer}><Icon icon={"bars"}/></div>
+        return <div className={"drawer-collapse-button"} onClick={onShowDrawer}><Icon icon={"bars"}/></div>
     }
 
     return <Navbar className={navBarClassnames}>

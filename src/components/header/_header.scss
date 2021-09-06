@@ -12,6 +12,20 @@
     box-shadow: none;
   }
 
+  .drawer-collapse-button {
+    padding: 0.5em 1em;
+    cursor: pointer;
+
+    &:hover {
+      background: #e8e8e8;
+      border-radius: 5px;
+    }
+
+    & i {
+      font-size: 1.1rem;
+    }
+  }
+
   .navbar-logo {
     padding: 0 1em;
   }
