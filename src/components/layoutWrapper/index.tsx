@@ -24,7 +24,8 @@ export default function LayoutWrapper(props: LayoutWrapperType) {
 
     const handleResize = () => {
         if (window.innerWidth < 768) {
-            setIsMobile(true)
+            setIsMobile(true);
+            setCollapsed(false);
         } else {
             setIsMobile(false)
         }

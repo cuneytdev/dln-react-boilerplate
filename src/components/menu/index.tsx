@@ -21,11 +21,14 @@ export default function CustomMenu(props: CustomMenuType) {
     const renderMenuItems = (menuItem: CustomMenuItem) => {
         if (menuItem.items) {
             return <Dropdown
+                key={menuItem.key}
                 placement="rightStart"
                 eventKey={menuItem.key}
                 title={menuItem.label}
                 icon={menuItem.icon}>
-                {menuItem.items.map(item => <Dropdown.Item icon={menuItem.icon} eventKey={item.key}>{item.label}</Dropdown.Item>)}
+                {menuItem.items.map(item => <Dropdown.Item key={item.key}
+                                                           icon={menuItem.icon}
+                                                           eventKey={item.key}>{item.label}</Dropdown.Item>)}
             </Dropdown>
         } else {
             return renderMenuItem(menuItem);
@@ -33,7 +36,7 @@ export default function CustomMenu(props: CustomMenuType) {
     }
 
     const renderMenuItem = (menuItem: CustomMenuItem) => {
-        return <Nav.Item eventKey={menuItem.key} icon={menuItem.icon}>{menuItem.label}</Nav.Item>
+        return <Nav.Item key={menuItem.key} eventKey={menuItem.key} icon={menuItem.icon}>{menuItem.label}</Nav.Item>
     }
 
     return <Sidenav
