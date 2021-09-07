@@ -79,7 +79,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
         if (!menu || isMobile) {
             return;
         }
-        return menu.map(item => <Nav.Item key={item.key} onSelect={onHandleMenuClicked} eventKey={item.router}>{item.label}</Nav.Item>)
+        return menu.map(item => <Nav.Item onSelect={onHandleMenuClicked} eventKey={item.router}>{item.label}</Nav.Item>)
     }
 
     const renderRightNavbar = () => {
