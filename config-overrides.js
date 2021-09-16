@@ -6,9 +6,15 @@ module.exports = override(
         lessOptions: {
             javascriptEnabled: true,
             modifyVars: {
-                '@base-color': '#f44336',
+                '@base-color': '#ff8000',
                 '@font-family-base': '"Poppins", sans-serif',
-                '@font-size-base': '14px'
+                '@font-size-base': '14px',
+                '@border-radius-base': '8px',
+                '@nav-bar-default-bg': '#f2f4f9',
+                '@nav-bar-default-font-color': '#838da6',
+                '@sidenav-subtle-bg': '#000',
+                '@sidenav-default-bg':'#fefefe',
+                '@nav-bar-height':'70px'
             }
         }
     })

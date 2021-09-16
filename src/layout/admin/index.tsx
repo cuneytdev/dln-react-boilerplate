@@ -18,3 +18,4 @@ export const AdminTemplate: FunctionComponent<PageContainerType> = (props) => {
         {children}
     </LayoutWrapper>
 }
+

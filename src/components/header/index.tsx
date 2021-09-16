@@ -5,11 +5,8 @@ import SwitchLanguage from "./switchLanguage";
 import {useHistory} from "react-router-dom";
 import classNames from "classnames";
 import {CustomMenuItem} from "../menu";
-
-enum MENU_ITEMS {
-    LOGOUT = 'logout',
-    LOGIN = 'login'
-}
+import {MENU_ITEMS} from "../../constants/menuItems";
+import {HOME_ROUTE, LOGIN_ROUTE} from "../../constants/routes";
 
 type HeaderType = {
     appIcon?: string;
@@ -42,10 +39,10 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     const onHandleMenuClicked = (key: string) => {
         switch (key) {
             case MENU_ITEMS.LOGOUT:
-                history.push('/');
+                history.push(HOME_ROUTE);
                 break;
             case MENU_ITEMS.LOGIN:
-                history.push('/login')
+                history.push(LOGIN_ROUTE)
                 break;
             default:
                 history.push(key)
@@ -86,10 +83,6 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
 
     const renderRightNavbar = () => {
         return <Nav pullRight>
-            {!userInfo && <Nav.Item onSelect={onHandleMenuClicked}
-                                    eventKey={MENU_ITEMS.LOGIN}>
-                {intl.formatMessage({id: "button.login"})}
-            </Nav.Item>}
             {renderTabMenus()}
             {userInfo && <>
                 <Dropdown className={"user-info"}
@@ -115,7 +108,7 @@ export const Header: FunctionComponent<HeaderType> = (props) => {
     return <Navbar className={navBarClassnames}>
         <Navbar.Header>
             {renderDrawerButton()}
-            <a href="/" className="navbar-logo">DLN APP</a>
+            <a href="/" className="navbar-logo"><img alt={"app-logo"}/></a>
         </Navbar.Header>
         <Navbar.Body>
             <Nav>
