@@ -11,6 +11,7 @@ function axiosConfig(method: API_METHOD_TYPE, endPoint: string, token: string | 
         url: `${process.env.REACT_APP_API_ENDPOINT}${endPoint}`,
     };
     if (token) {
+        // @ts-ignore
         config.headers["Authorization"] = `Bearer ${token}`;
     }
     if (data) {
